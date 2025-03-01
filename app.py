@@ -44,15 +44,14 @@ if uploading_files:
         if st.checkbox(f"Clean data for {file.name}"):
             col1, col2 = st.columns(2)
 
-            with col1:
+          with col1:
                 if st.button(f"Remove duplicates from the file : {file.name}"):
                     df.drop_duplicates(inplace=True)
-                    st.write("Missing values have been filled!")
+                    st.write("Duplicates removed!")
 
             with col2:
-                if st.button(f"Fill missing values for : {file.name}"):
-                    numeric_cols = df.select_dtypes(include=['number']).columns
-                    st.write("Duplicates removed!")  
+                if st.button(f"Fill missing values for {file.name}"):
+                    numeric_cols = df.select_dtypes(include=['number']).columns  
                     df[numeric_cols] = df[numeric_cols].fillna(df[numeric_cols].mean())
                     st.write("Missing values has been filled")
         
